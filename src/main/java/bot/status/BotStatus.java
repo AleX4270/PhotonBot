@@ -9,6 +9,6 @@ public class BotStatus extends ListenerAdapter
     @Override
     public void onReady(ReadyEvent evnt)
     {
-        evnt.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT, "100% in Java :)"));
+        evnt.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT, "Wpisz ?help"));
     }
 }

@@ -8,33 +8,21 @@ import java.awt.*;
 
 public class PingCommand extends ListenerAdapter
 {
-    private String pref = "?";
 
-    @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event)
+
+
+    public static void Show(GuildMessageReceivedEvent event)
     {
-        if(event.getAuthor().isBot())
-        {
-            return;
-        }
 
-        String messageSent = event.getMessage().getContentRaw();
-        String channelName = event.getChannel().getName();
-        String messageAuthor = event.getAuthor().getName();
-        String authorName = event.getMember().getUser().getName();
-        String serverName = event.getGuild().getName();
+        long pong = event.getJDA().getPing();
+        String ping = Long.toString(pong);
 
-        if(messageSent.equalsIgnoreCase(pref + "ping"))
-        {
-            long pong = event.getJDA().getPing();
-            String ping = Long.toString(pong);
+        EmbedBuilder pin = new EmbedBuilder();
+        pin.setTitle(":ping_pong: PONG :ping_pong: ");
+        pin.setColor(Color.CYAN);
+        pin.addField("Aktualny ping bota: ", ping, false );
+        event.getChannel().sendMessage(pin.build()).queue();
 
-            EmbedBuilder pin = new EmbedBuilder();
-            pin.setTitle(":ping_pong: PONG :ping_pong: ");
-            pin.setColor(Color.CYAN);
-            pin.addField("Aktualny ping bota: ", ping, false );
-            event.getChannel().sendMessage(pin.build()).queue();
-        }
 
     }
 }
