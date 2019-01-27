@@ -27,16 +27,56 @@ public class CalculateCommand extends ListenerAdapter
         {
             if(message[1].equalsIgnoreCase("dodaj")) //dodawanie dwoch liczb
             {
-                int a,b,r;
+                double a,b,r;
                 String result;
-                a = Integer.parseInt(message[2]);
-                b = Integer.parseInt(message[3]);
+                a = Double.parseDouble(message[2]);
+                b = Double.parseDouble(message[3]);
                 r = (a + b);
 
-                result = Integer.toString(r);
+                result = Double.toString(r);
 
-                event.getChannel().sendMessage("Wynik tego dzialania to: " + result).queue();
+                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
 
+            }
+            else if(message[1].equalsIgnoreCase("odejmij"))
+            {
+                double a,b,r;
+                String result;
+                a = Double.parseDouble(message[2]);
+                b = Double.parseDouble(message[3]);
+                r = (a - b);
+
+                result = Double.toString(r);
+
+                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+            }
+            else if(message[1].equalsIgnoreCase("pomnóż"))
+            {
+                double a,b,r;
+                String result;
+                a = Double.parseDouble(message[2]);
+                b = Double.parseDouble(message[3]);
+                r = (a * b);
+
+                result = Double.toString(r);
+
+                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+            }
+            else if(message[1].equalsIgnoreCase("podziel"))
+            {
+                if(message[3] == "0")
+                {
+                    return;
+                }
+                double a,b,r;
+                String result;
+                a = Double.parseDouble(message[2]);
+                b = Double.parseDouble(message[3]);
+                r = (a / b);
+
+                result = Double.toString(r);
+
+                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
             }
         }
 

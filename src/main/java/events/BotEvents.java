@@ -27,21 +27,12 @@ public class BotEvents extends ListenerAdapter
                 + channelName + " od " + authorName + ": " + messageSent);
                  //wiadomosc do konsoli o tym kto i co wyslal, w skrocie logi
 
-
-
-
-        if(messageSent.equalsIgnoreCase(pref + "moszka")) //informacje o hubercie :)
-        {
-            event.getChannel().sendMessage("__**Ta komenda jest obecnie dezaktywowana ze wzgledu na problemy " +
-                    "z obsluga jezyka polskiego!**__ ").queue();
-        }
-
-        }
-
-
-
-
-
     }
+
+
+
+
+
+}
 
 

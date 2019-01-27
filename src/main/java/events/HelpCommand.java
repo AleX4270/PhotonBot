@@ -30,11 +30,11 @@ public class HelpCommand extends ListenerAdapter
             EmbedBuilder help = new EmbedBuilder();
             help.setTitle("Dostepne komendy: ", null);
             help.setColor(Color.MAGENTA);
-            help.setDescription("Komendy dostepne do uzycia w aktualnej wersji bota.");
-            help.addField("?witaj :raised_hands: " , "Sprawia, ze bot sie z toba przywita.", false);
-            help.addField("?ping :ping_pong:" , "Wyswietla aktualny ping bota.", false);
-            help.addField("?moszka", "Kilka ciekawostek o Hubercie",false);
-            help.addField("?version :wrench:","Pokazuje informacje techniczne na temat bota", false);
+            help.setDescription("Komendy dostępne do użycia w aktualnej wersji bota.");
+            help.addField("?witaj :raised_hands: " , "Sprawia, że bot się z tobą przywita.", false);
+            help.addField("?ping :ping_pong:" , "Wyświetla aktualny ping bota.", false);
+            help.addField("?wersja :wrench:","Pokazuje informacje techniczne na temat bota", false);
+            help.addField("?kalkulator :heavy_plus_sign:", "dodaj/odejmij/pomnóż/podziel, maksymalnie 2 liczby!", false);
             event.getChannel().sendMessage(help.build()).queue();
 
         }
