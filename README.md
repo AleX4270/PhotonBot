@@ -1,0 +1,2 @@
+# DiscordSpectre
+Discord Spectre Bot
