@@ -20,11 +20,12 @@ public class Main extends ListenerAdapter
         JDA bot = new JDABuilder(token).build();
         bot.addEventListener(new BotEvents()); //dodawanie listenera do nasluchiwania eventow
         bot.addEventListener(new BotStatus());
-        bot.addEventListener(new HelloCommand());
         bot.addEventListener(new HelpCommand());
         bot.addEventListener(new VersionCommand());
         bot.addEventListener(new PingCommand());
         bot.addEventListener(new CalculateCommand());
+
+        bot.addEventListener(new Handler());
 
     }
 
