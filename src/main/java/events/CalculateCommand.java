@@ -33,21 +33,13 @@ public class CalculateCommand extends ListenerAdapter
             {
                 double a,b,r;
                 String result;
-<<<<<<< HEAD
-                a = Double.parseDouble(message[2]);
-                b = Double.parseDouble(message[3]);
-                r = (a + b);
-=======
                 a = Double.parseDouble(msg[2]);
                 b = Double.parseDouble(msg[3]);
                 r = (a - b);
->>>>>>> dev
 
                 result = Double.toString(r);
 
                 event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
-<<<<<<< HEAD
-=======
             }
             else if(msg[1].equalsIgnoreCase("pomnóż"))
             {
@@ -72,47 +64,6 @@ public class CalculateCommand extends ListenerAdapter
                 {
                     return;
                 }
-                r = (a / b);
->>>>>>> dev
-
-                result = Double.toString(r);
-
-                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
-            }
-            else if(message[1].equalsIgnoreCase("odejmij"))
-            {
-                double a,b,r;
-                String result;
-                a = Double.parseDouble(message[2]);
-                b = Double.parseDouble(message[3]);
-                r = (a - b);
-
-                result = Double.toString(r);
-
-                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
-            }
-            else if(message[1].equalsIgnoreCase("pomnóż"))
-            {
-                double a,b,r;
-                String result;
-                a = Double.parseDouble(message[2]);
-                b = Double.parseDouble(message[3]);
-                r = (a * b);
-
-                result = Double.toString(r);
-
-                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
-            }
-            else if(message[1].equalsIgnoreCase("podziel"))
-            {
-                if(message[3] == "0")
-                {
-                    return;
-                }
-                double a,b,r;
-                String result;
-                a = Double.parseDouble(message[2]);
-                b = Double.parseDouble(message[3]);
                 r = (a / b);
 
                 result = Double.toString(r);
