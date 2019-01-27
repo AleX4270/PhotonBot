@@ -8,25 +8,13 @@ import java.awt.*;
 
 public class HelpCommand extends ListenerAdapter
 {
-    private String pref = "?";
 
-    @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event)
+
+
+    public static void Show(GuildMessageReceivedEvent event)
     {
-        if(event.getAuthor().isBot())
-        {
-            return;
-        }
 
 
-        String messageSent = event.getMessage().getContentRaw();
-        String channelName = event.getChannel().getName();
-        String messageAuthor = event.getAuthor().getName();
-        String authorName = event.getMember().getUser().getName();
-        String serverName = event.getGuild().getName();
-
-        if(messageSent.equalsIgnoreCase(pref + "help"))
-        {
             EmbedBuilder help = new EmbedBuilder();
             help.setTitle("Dostepne komendy: ", null);
             help.setColor(Color.MAGENTA);
@@ -37,7 +25,7 @@ public class HelpCommand extends ListenerAdapter
             help.addField("?kalkulator :heavy_plus_sign:", "dodaj/odejmij/pomnóż/podziel, maksymalnie 2 liczby!", false);
             event.getChannel().sendMessage(help.build()).queue();
 
-        }
+
 
 
 

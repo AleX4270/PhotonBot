@@ -5,32 +5,23 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class CalculateCommand extends ListenerAdapter
 {
-    private String pref = "?";
+    private static String pref = "?";
 
-    @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event)
+
+    public static void Show(GuildMessageReceivedEvent event, String msg[])
     {
-        if(event.getAuthor().isBot())
-        {
-            return;
-        }
 
-        String messageSent = event.getMessage().getContentRaw();
-        String channelName = event.getChannel().getName();
-        String messageAuthor = event.getAuthor().getName();
-        String authorName = event.getMember().getUser().getName();
-        String serverName = event.getGuild().getName();
-
-        String message[] = event.getMessage().getContentRaw().split(" ");
-
-        if(message[0].equalsIgnoreCase(pref + "kalkulator")) //glowna czesc komendy
-        {
-            if(message[1].equalsIgnoreCase("dodaj")) //dodawanie dwoch liczb
+            if(msg.length > 4)
+            {
+                event.getChannel().sendMessage("**Maksymalnie możesz wykonać działanie tylko na 2 liczbach!**").queue();
+                return;
+            }
+            else if(msg[1].equalsIgnoreCase("dodaj")) //dodawanie dwoch liczb
             {
                 double a,b,r;
                 String result;
-                a = Double.parseDouble(message[2]);
-                b = Double.parseDouble(message[3]);
+                a = Double.parseDouble(msg[2]);
+                b = Double.parseDouble(msg[3]);
                 r = (a + b);
 
                 result = Double.toString(r);
@@ -38,40 +29,41 @@ public class CalculateCommand extends ListenerAdapter
                 event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
 
             }
-            else if(message[1].equalsIgnoreCase("odejmij"))
+            else if(msg[1].equalsIgnoreCase("odejmij"))
             {
                 double a,b,r;
                 String result;
-                a = Double.parseDouble(message[2]);
-                b = Double.parseDouble(message[3]);
+                a = Double.parseDouble(msg[2]);
+                b = Double.parseDouble(msg[3]);
                 r = (a - b);
 
                 result = Double.toString(r);
 
                 event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
             }
-            else if(message[1].equalsIgnoreCase("pomnóż"))
+            else if(msg[1].equalsIgnoreCase("pomnóż"))
             {
                 double a,b,r;
                 String result;
-                a = Double.parseDouble(message[2]);
-                b = Double.parseDouble(message[3]);
+                a = Double.parseDouble(msg[2]);
+                b = Double.parseDouble(msg[3]);
                 r = (a * b);
 
                 result = Double.toString(r);
 
                 event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
             }
-            else if(message[1].equalsIgnoreCase("podziel"))
+            else if(msg[1].equalsIgnoreCase("podziel"))
             {
-                if(message[3] == "0")
+
+                double a,b,r;
+                String result;
+                a = Double.parseDouble(msg[2]);
+                b = Double.parseDouble(msg[3]);
+                if(b == 0)
                 {
                     return;
                 }
-                double a,b,r;
-                String result;
-                a = Double.parseDouble(message[2]);
-                b = Double.parseDouble(message[3]);
                 r = (a / b);
 
                 result = Double.toString(r);
@@ -81,4 +73,4 @@ public class CalculateCommand extends ListenerAdapter
         }
 
     }
-}
+
