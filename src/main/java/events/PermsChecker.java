@@ -10,17 +10,26 @@ import java.util.Scanner;
 
 public class PermsChecker extends ListenerAdapter
 {
-    public static String getPerms(GuildMessageReceivedEvent event)
+    public static String adminsId[] = new String[10];
+
+    public static String[] getPerms(GuildMessageReceivedEvent event)
     {
-        String ownerId = "";
+
+        int licznik = 0;
         File plik = new File("ownerid.txt");
         try
         {
             Scanner odczyt = new Scanner(plik);
-            while(odczyt.hasNextLine())
-            {
-                ownerId = odczyt.nextLine();
-            }
+
+                while (odczyt.hasNextLine()) {
+                    try {
+                        adminsId[licznik] = odczyt.nextLine();
+                        licznik++;
+                    } catch (Exception e) {
+                        System.out.println("Błąd!");
+                    }
+                }
+
         }
         catch(FileNotFoundException except)
         {
@@ -28,7 +37,7 @@ public class PermsChecker extends ListenerAdapter
         }
 
 
-        return ownerId;
+        return adminsId;
 
     }
 }
