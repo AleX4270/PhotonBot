@@ -9,6 +9,7 @@ public class Handler extends ListenerAdapter
 {
     private String pref = "?";
     public String status;
+    private String ownerId = "";
 
 
     @Override
@@ -19,12 +20,15 @@ public class Handler extends ListenerAdapter
         String messageAuthor = event.getAuthor().getName();
         String authorName = event.getMember().getUser().getName();
         String serverName = event.getGuild().getName();
+        String authorId = event.getAuthor().getId();
 
         System.out.println("Wiadomosc na serwerze: " + serverName + " na kanale: "
                 + channelName + " od " + authorName + ": " + messageSent);
         //wiadomosc do konsoli o tym kto i co wyslal, w skrocie logi
 
         String message[] = event.getMessage().getContentRaw().split(" ");
+
+
 
         if(event.getAuthor().isBot()) //jezeli wiadomosc napisal bot to nie wypisuj
         {
@@ -60,13 +64,31 @@ public class Handler extends ListenerAdapter
         }
 
 
-        if(message[0].equalsIgnoreCase(pref + "status"))
+        if (message[0].equalsIgnoreCase(pref + "status"))
         {
-            status = StatusCommand.Change(event, message);
-            //System.out.println(status);
-            BotStatus.changedStatus = status;
-            BotStatus.Status(event);
+            //ownerId = PermsChecker.getPerms(event);
+            ownerId = "278953882628128769";
+            System.out.println("ID1: " + authorId);
+            System.out.println("ID2: " + ownerId);
+            if(authorId == ownerId)
+            {
+
+                status = StatusCommand.Change(event, message);
+                //System.out.println(status);
+                BotStatus.changedStatus = status;
+                BotStatus.Status(event);
+            }
+            else if(authorId != ownerId)
+            {
+                System.out.println(authorName + " chcial zmienic status bota bez odpowiednich permisji!");
+                event.getChannel().sendMessage("**Nie posiadasz odpowiednich uprawnień, żeby użyć tej komendy!**").queue();
+
+                return;
+            }
         }
+
+
+
     }
 
 

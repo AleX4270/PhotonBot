@@ -19,7 +19,7 @@ public class VersionCommand extends ListenerAdapter
             ver.setColor(Color.orange);
             ver.setDescription("Wersja bota, ostatnia aktualizacja itd.");
             ver.addField("Aktualna wersja bota: ", "v0.4.5 BETA", false);
-            ver.addField("Ostatnia aktualizacja: ", "27.01.2019", false);
+            ver.addField("Ostatnia aktualizacja: ", "28.01.2019", false);
             ver.addField("Twórca bota:", "AleX#2501", false);
             event.getChannel().sendMessage(ver.build()).queue();
 
