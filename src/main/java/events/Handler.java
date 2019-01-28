@@ -1,11 +1,15 @@
 package events;
 
+import bot.status.BotStatus;
+import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class Handler extends ListenerAdapter
 {
     private String pref = "?";
+    public String status;
+
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event)
@@ -46,13 +50,29 @@ public class Handler extends ListenerAdapter
         {
             PingCommand.Show(event);
         }
-        else if(messageSent.equalsIgnoreCase(pref + "help"))
+        else if(messageSent.equalsIgnoreCase(pref + "help")) //komenda help
         {
             HelpCommand.Show(event);
         }
-        else if(messageSent.equalsIgnoreCase(pref + "wersja"))
+        else if(messageSent.equalsIgnoreCase(pref + "wersja"))  //komenda wersja
         {
             VersionCommand.Show(event);
         }
+
+
+        if(message[0].equalsIgnoreCase(pref + "status"))
+        {
+            status = StatusCommand.Change(event, message);
+            //System.out.println(status);
+            BotStatus.changedStatus = status;
+            BotStatus.Status(event);
+        }
+    }
+
+
+    @Override
+    public void onReady(ReadyEvent event)
+    {
+        BotStatus.ChangeDefault(event);
     }
 }
