@@ -19,7 +19,7 @@ public class Main extends ListenerAdapter
     {
         JDA bot = new JDABuilder(token).build();
 
-        bot.addEventListener(new BotStatus());
+
         bot.addEventListener(new Handler());
 
     }

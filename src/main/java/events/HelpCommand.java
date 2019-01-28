@@ -23,12 +23,18 @@ public class HelpCommand extends ListenerAdapter
             help.addField("?ping :ping_pong:" , "Wyświetla aktualny ping bota.", false);
             help.addField("?wersja :wrench:","Pokazuje informacje techniczne na temat bota", false);
             help.addField("?kalkulator :heavy_plus_sign:", "dodaj/odejmij/pomnóż/podziel, maksymalnie 2 liczby!", false);
+            help.addField("?helpo", "Wyświetla komendy dostępne tylko dla administracji bota,", false);
             event.getChannel().sendMessage(help.build()).queue();
+    }
 
-
-
-
-
+    public static void ShowOHelp(GuildMessageReceivedEvent event)
+    {
+            EmbedBuilder helpo= new EmbedBuilder();
+            helpo.setTitle("Komendy administracji:", null);
+            helpo.setColor(Color.RED);
+            helpo.setDescription("Lista komend dostępnych tylko dla administracji!");
+            helpo.addField("?status", "Wpisz ?status /status/, zby zmienic aktualny status bota!", false);
+            event.getChannel().sendMessage(helpo.build()).queue();
 
     }
 }

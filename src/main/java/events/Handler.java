@@ -1,11 +1,16 @@
 package events;
 
+import bot.status.BotStatus;
+import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class Handler extends ListenerAdapter
 {
     private String pref = "?";
+    public String status;
+    private String ownerId = "";
+
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event)
@@ -15,12 +20,15 @@ public class Handler extends ListenerAdapter
         String messageAuthor = event.getAuthor().getName();
         String authorName = event.getMember().getUser().getName();
         String serverName = event.getGuild().getName();
+        String authorId = event.getAuthor().getId();
 
         System.out.println("Wiadomosc na serwerze: " + serverName + " na kanale: "
                 + channelName + " od " + authorName + ": " + messageSent);
         //wiadomosc do konsoli o tym kto i co wyslal, w skrocie logi
 
         String message[] = event.getMessage().getContentRaw().split(" ");
+
+
 
         if(event.getAuthor().isBot()) //jezeli wiadomosc napisal bot to nie wypisuj
         {
@@ -46,13 +54,49 @@ public class Handler extends ListenerAdapter
         {
             PingCommand.Show(event);
         }
-        else if(messageSent.equalsIgnoreCase(pref + "help"))
+        else if(messageSent.equalsIgnoreCase(pref + "help")) //komenda help
         {
             HelpCommand.Show(event);
         }
-        else if(messageSent.equalsIgnoreCase(pref + "wersja"))
+        else if(messageSent.equalsIgnoreCase(pref + "helpo"))
+        {
+            HelpCommand.ShowOHelp(event);
+        }
+        else if(messageSent.equalsIgnoreCase(pref + "wersja"))  //komenda wersja
         {
             VersionCommand.Show(event);
         }
+
+
+        if (message[0].equalsIgnoreCase(pref + "status"))
+        {
+            ownerId = PermsChecker.getPerms(event);
+
+            if(authorId.equals(ownerId))
+            {
+
+                status = StatusCommand.Change(event, message);
+                //System.out.println(status);
+                BotStatus.changedStatus = status;
+                BotStatus.Status(event);
+            }
+            else if(authorId != ownerId)
+            {
+                System.out.println(authorName + " chcial zmienic status bota bez odpowiednich permisji!");
+                event.getChannel().sendMessage("**Nie posiadasz odpowiednich uprawnień, żeby użyć tej komendy!**").queue();
+
+                return;
+            }
+        }
+
+
+
+    }
+
+
+    @Override
+    public void onReady(ReadyEvent event)
+    {
+        BotStatus.ChangeDefault(event);
     }
 }
