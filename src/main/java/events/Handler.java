@@ -22,9 +22,12 @@ public class Handler extends ListenerAdapter
         String serverName = event.getGuild().getName();
         String authorId = event.getAuthor().getId();
 
+        //String admList[] = PermsChecker.getPerms(event);
+
         System.out.println("Wiadomosc na serwerze: " + serverName + " na kanale: "
                 + channelName + " od " + authorName + ": " + messageSent);
         //wiadomosc do konsoli o tym kto i co wyslal, w skrocie logi
+
 
         String message[] = event.getMessage().getContentRaw().split(" ");
 
@@ -58,21 +61,39 @@ public class Handler extends ListenerAdapter
         {
             HelpCommand.Show(event);
         }
-        else if(messageSent.equalsIgnoreCase(pref + "helpo"))
+
+        if(messageSent.equalsIgnoreCase(pref + "helpo"))
         {
-            HelpCommand.ShowOHelp(event);
+
+            if(checkPermissions(event,PermsChecker.getPerms(event),authorId) == true)
+            {
+                HelpCommand.ShowOHelp(event);
+            }
+            else
+            {
+                event.getChannel().sendMessage("**Aj, aj, chyba nie jesteś z administracji ;)**").queue();
+            }
         }
-        else if(messageSent.equalsIgnoreCase(pref + "wersja"))  //komenda wersja
+
+        if(messageSent.equalsIgnoreCase(pref + "wersja"))  //komenda wersja
         {
             VersionCommand.Show(event);
+        }
+        else if(message[0].equalsIgnoreCase(pref + "say"))
+        {
+            SayCommand.Show(event, message);
+        }
+        else if(message[0].equalsIgnoreCase(pref + "invite"))
+        {
+            InviteCommand.Show(event, message);
         }
 
 
         if (message[0].equalsIgnoreCase(pref + "status"))
         {
-            ownerId = PermsChecker.getPerms(event);
 
-            if(authorId.equals(ownerId))
+
+            if(checkPermissions(event,PermsChecker.getPerms(event),authorId) == true)
             {
 
                 status = StatusCommand.Change(event, message);
@@ -93,10 +114,26 @@ public class Handler extends ListenerAdapter
 
     }
 
-
     @Override
     public void onReady(ReadyEvent event)
     {
         BotStatus.ChangeDefault(event);
+    }
+
+    public boolean checkPermissions(GuildMessageReceivedEvent evnt, String adminList[], String aId)
+    {
+        for(int i = 0; i < adminList.length; i++)
+        {
+            if(aId.equals(adminList[i]))
+            {
+                return true;
+            }
+            else
+            {
+                continue;
+            }
+        }
+
+        return false;
     }
 }

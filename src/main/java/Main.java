@@ -19,6 +19,7 @@ public class Main extends ListenerAdapter
     {
         JDA bot = new JDABuilder(token).build();
 
+        System.out.println("Liczba dodanych administratorow: " + PermsChecker.adminsId.length + " czyli ja xD");
 
         bot.addEventListener(new Handler());
 

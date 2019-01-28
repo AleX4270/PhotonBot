@@ -24,6 +24,8 @@ public class HelpCommand extends ListenerAdapter
             help.addField("?wersja :wrench:","Pokazuje informacje techniczne na temat bota", false);
             help.addField("?kalkulator :heavy_plus_sign:", "dodaj/odejmij/pomnóż/podziel, maksymalnie 2 liczby!", false);
             help.addField("?helpo", "Wyświetla komendy dostępne tylko dla administracji bota,", false);
+            help.addField("?say :ab:", "Sprawia, że bot napisze co zechcesz :)",false);
+            help.addField("?invite :space_invader:", "Tworzy link z zaproszeniem na serwer.", false);
             event.getChannel().sendMessage(help.build()).queue();
     }
 
