@@ -58,6 +58,10 @@ public class Handler extends ListenerAdapter
         {
             HelpCommand.Show(event);
         }
+        else if(messageSent.equalsIgnoreCase(pref + "helpo"))
+        {
+            HelpCommand.ShowOHelp(event);
+        }
         else if(messageSent.equalsIgnoreCase(pref + "wersja"))  //komenda wersja
         {
             VersionCommand.Show(event);
@@ -66,11 +70,9 @@ public class Handler extends ListenerAdapter
 
         if (message[0].equalsIgnoreCase(pref + "status"))
         {
-            //ownerId = PermsChecker.getPerms(event);
-            ownerId = "278953882628128769";
-            System.out.println("ID1: " + authorId);
-            System.out.println("ID2: " + ownerId);
-            if(authorId == ownerId)
+            ownerId = PermsChecker.getPerms(event);
+
+            if(authorId.equals(ownerId))
             {
 
                 status = StatusCommand.Change(event, message);

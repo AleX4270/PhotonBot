@@ -19,7 +19,7 @@ public class PermsChecker extends ListenerAdapter
             Scanner odczyt = new Scanner(plik);
             while(odczyt.hasNextLine())
             {
-                ownerId = odczyt.toString();
+                ownerId = odczyt.nextLine();
             }
         }
         catch(FileNotFoundException except)
@@ -29,5 +29,6 @@ public class PermsChecker extends ListenerAdapter
 
 
         return ownerId;
+
     }
 }
