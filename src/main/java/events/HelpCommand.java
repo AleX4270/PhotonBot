@@ -17,7 +17,7 @@ public class HelpCommand extends ListenerAdapter
 
             EmbedBuilder help = new EmbedBuilder();
             help.setTitle("Dostepne komendy: ", null);
-            help.setColor(Color.MAGENTA);
+            help.setColor(Color.RED);
             help.setDescription("Komendy dostępne do użycia w aktualnej wersji bota.");
             help.addField("?witaj :raised_hands: " , "Sprawia, że bot się z tobą przywita.", false);
             help.addField("?ping :ping_pong:" , "Wyświetla aktualny ping bota.", false);

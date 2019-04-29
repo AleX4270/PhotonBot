@@ -12,8 +12,9 @@ import java.util.List;
 public class Handler extends ListenerAdapter
 {
     private String pref = "?";
-    public String status;
+    public static String status;
     private String ownerId = "";
+    public static String language = "Polish"; //domyslny jezyk polski
 
 
     @Override
@@ -57,7 +58,7 @@ public class Handler extends ListenerAdapter
         {
             HelloCommand.Show(event);
         }
-        else if(message[0].equalsIgnoreCase(pref + "kalkulator")) //glowna czesc komendy
+        else if(message[0].equalsIgnoreCase(pref + "kalkulator")) //glowna czesc komendy kalkulator
         {
             try
             {
@@ -105,17 +106,62 @@ public class Handler extends ListenerAdapter
         {
             VersionCommand.Show(event);
         }
-        else if(message[0].equalsIgnoreCase(pref + "say"))
+        else if(message[0].equalsIgnoreCase(pref + "say")) //Komenda say
         {
             SayCommand.Show(event, message);
         }
-        else if(message[0].equalsIgnoreCase(pref + "invite"))
+        else if(message[0].equalsIgnoreCase(pref + "invite")) //Komenda tworzaca zaproszenie
         {
             InviteCommand.Show(event, message);
         }
-        else if(messageSent.equalsIgnoreCase(pref + "smode"))
+        else if(messageSent.equalsIgnoreCase(pref + "smode")) //Komenda wlaczajaca tryb anty spoilerowy
         {
             SpoilMode.Show(event);
+        }
+        else if(message[0].equalsIgnoreCase(pref + "lang")) //Komenda zmieniajaca jezyk
+        {
+
+            if(((message.length < 2 || message.length > 2) && (Handler.language.equals("Polish")))) //Komunikat o wlasciwym uzyciu komendy
+            {
+                event.getChannel().sendMessage("Uzyj tej komendy poprawnie! **?lang Polish** lub **?lang English**").queue();
+                return;
+            }
+            else if(((message.length < 2 || message.length > 2) && (Handler.language.equals("English")))) //Komunikat o wlasciwym uzyciu komendy
+            {
+                event.getChannel().sendMessage("Use that command properly. Type **?lang Polish** or **?lang English**").queue();
+                return;
+            }
+
+            //Komunikaty wyswietlajace sie jezeli probujesz zmienic na jezyk ktory jest juz ustawiony:
+
+            if(message[1].equalsIgnoreCase("Polish") && Handler.language.equals("Polish"))
+            {
+                event.getChannel().sendMessage("**Ten jezyk jest juz ustawiony! Zapomniales?**").queue();
+                return;
+            }
+            else if(message[1].equalsIgnoreCase("English") && Handler.language.equals("English"))
+            {
+                event.getChannel().sendMessage("**This language is already set. Did you forget?**").queue();
+                return;
+            }
+            try
+            {
+                if(message[1].equalsIgnoreCase("polish")) //Komunikat zmiany na jezyk polski
+                {
+                    Handler.language = "Polish";
+                    event.getChannel().sendMessage("**Zmieniono jezyk na polski!**").queue();
+                }
+                else if(message[1].equalsIgnoreCase("english")) //Komunikat zmiany na jezyk angielski
+                {
+                    Handler.language = "English";
+                    event.getChannel().sendMessage("**The Language has been changed to English!**").queue();
+                }
+            }
+            catch (ArrayIndexOutOfBoundsException e)
+            {
+                System.out.println("Wystapil blad podczas zmiany jezyka. [Indeks tablicy poza zasiegiem...]"); //Blad tablicy
+            }
+
         }
 
 

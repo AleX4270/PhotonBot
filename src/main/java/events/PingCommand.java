@@ -9,8 +9,6 @@ import java.awt.*;
 public class PingCommand extends ListenerAdapter
 {
 
-
-
     public static void Show(GuildMessageReceivedEvent event)
     {
 
@@ -19,7 +17,7 @@ public class PingCommand extends ListenerAdapter
 
         EmbedBuilder pin = new EmbedBuilder();
         pin.setTitle(":ping_pong: PONG :ping_pong: ");
-        pin.setColor(Color.CYAN);
+        pin.setColor(Color.RED);
         pin.addField("Aktualny ping bota: ", ping, false );
         event.getChannel().sendMessage(pin.build()).queue();
 

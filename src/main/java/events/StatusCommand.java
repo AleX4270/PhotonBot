@@ -11,6 +11,7 @@ public class StatusCommand extends ListenerAdapter
     {
         newStatus = "";
 
+
         for(int i = 1; i < msg.length; i++)
         {
             newStatus += msg[i];
