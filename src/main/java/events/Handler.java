@@ -5,6 +5,10 @@ import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Handler extends ListenerAdapter
 {
     private String pref = "?";
@@ -21,6 +25,17 @@ public class Handler extends ListenerAdapter
         String authorName = event.getMember().getUser().getName();
         String serverName = event.getGuild().getName();
         String authorId = event.getAuthor().getId();
+
+        //System.out.println(messageSent);
+
+        //List mentionedId = event.getMessage().getMentionedUsers();
+
+        //event.getMessage().getMentionedUsers();
+
+        /*for(Object i: mentionedId)
+        {
+            System.out.println("Zawartosc listy mentionedId: " + mentionedId);
+        }*/
 
         //String admList[] = PermsChecker.getPerms(event);
 
@@ -74,6 +89,17 @@ public class Handler extends ListenerAdapter
                 event.getChannel().sendMessage("**Aj, aj, chyba nie jesteś z administracji ;)**").queue();
             }
         }
+        else if(messageSent.equalsIgnoreCase(pref + "shutdown"))
+        {
+            if(checkPermissions(event, PermsChecker.getPerms(event), authorId) == true)
+            {
+                ShdCommand.Shutdown(event);
+            }
+            else
+            {
+                event.getChannel().sendMessage("**Aj, aj, chyba nie jesteś z administracji ;)**").queue();
+            }
+        }
 
         if(messageSent.equalsIgnoreCase(pref + "wersja"))  //komenda wersja
         {
@@ -86,6 +112,10 @@ public class Handler extends ListenerAdapter
         else if(message[0].equalsIgnoreCase(pref + "invite"))
         {
             InviteCommand.Show(event, message);
+        }
+        else if(messageSent.equalsIgnoreCase(pref + "smode"))
+        {
+            SpoilMode.Show(event);
         }
 
 
@@ -100,8 +130,9 @@ public class Handler extends ListenerAdapter
                 //System.out.println(status);
                 BotStatus.changedStatus = status;
                 BotStatus.Status(event);
+                event.getChannel().sendMessage("**Zmieniono status bota!**").queue();
             }
-            else if(authorId != ownerId)
+            else
             {
                 System.out.println(authorName + " chcial zmienic status bota bez odpowiednich permisji!");
                 event.getChannel().sendMessage("**Nie posiadasz odpowiednich uprawnień, żeby użyć tej komendy!**").queue();
@@ -109,6 +140,7 @@ public class Handler extends ListenerAdapter
                 return;
             }
         }
+
 
 
 

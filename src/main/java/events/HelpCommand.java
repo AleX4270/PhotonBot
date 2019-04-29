@@ -36,6 +36,7 @@ public class HelpCommand extends ListenerAdapter
             helpo.setColor(Color.RED);
             helpo.setDescription("Lista komend dostępnych tylko dla administracji!");
             helpo.addField("?status", "Wpisz ?status /status/, zby zmienic aktualny status bota!", false);
+            helpo.addField("?shutdown", "Wylacza bota!", false);
             event.getChannel().sendMessage(helpo.build()).queue();
 
     }
