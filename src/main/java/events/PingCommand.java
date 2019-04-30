@@ -9,7 +9,7 @@ import java.awt.*;
 public class PingCommand extends ListenerAdapter
 {
 
-    public static void Show(GuildMessageReceivedEvent event)
+    public static void ShowPl(GuildMessageReceivedEvent event)
     {
 
         long pong = event.getJDA().getPing();
@@ -19,6 +19,21 @@ public class PingCommand extends ListenerAdapter
         pin.setTitle(":ping_pong: PONG :ping_pong: ");
         pin.setColor(Color.RED);
         pin.addField("Aktualny ping bota: ", ping, false );
+        event.getChannel().sendMessage(pin.build()).queue();
+
+
+    }
+
+    public static void ShowEng(GuildMessageReceivedEvent event)
+    {
+
+        long pong = event.getJDA().getPing();
+        String ping = Long.toString(pong);
+
+        EmbedBuilder pin = new EmbedBuilder();
+        pin.setTitle(":ping_pong: PONG :ping_pong: ");
+        pin.setColor(Color.RED);
+        pin.addField("Actual bot ping: ", ping, false );
         event.getChannel().sendMessage(pin.build()).queue();
 
 

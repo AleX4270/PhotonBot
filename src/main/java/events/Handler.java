@@ -54,11 +54,18 @@ public class Handler extends ListenerAdapter
             return;
         }
 
-        if(messageSent.equalsIgnoreCase(pref + "witaj")) //komenda witaj
+        if((messageSent.equalsIgnoreCase(pref + "witaj") && language.equalsIgnoreCase("Polish")) || (messageSent.equalsIgnoreCase(pref + "hello") && language.equalsIgnoreCase("English"))) //komenda witaj
         {
-            HelloCommand.Show(event);
+            if(language.equalsIgnoreCase("English"))
+            {
+                HelloCommand.ShowEng(event);
+            }
+            else
+            {
+                HelloCommand.ShowPl(event);
+            }
         }
-        else if(message[0].equalsIgnoreCase(pref + "kalkulator")) //glowna czesc komendy kalkulator
+        else if(message[0].equalsIgnoreCase(pref + "kalkulator") || (messageSent.equalsIgnoreCase(pref + "calc") && language.equalsIgnoreCase("English"))) //glowna czesc komendy kalkulator
         {
             try
             {
@@ -66,28 +73,60 @@ public class Handler extends ListenerAdapter
             }
             catch(Exception e)
             {
+                if(language.equalsIgnoreCase("Polish"))
+                {
+
+                }
                 event.getChannel().sendMessage("**Wystąpił błąd!**").queue(); //jezeli nie powiedzie się dodawanie
             }
         }
         else if(messageSent.equalsIgnoreCase(pref + "ping")) //komenda ping
         {
-            PingCommand.Show(event);
+            if(language.equalsIgnoreCase("English"))
+            {
+                PingCommand.ShowEng(event);
+            }
+            else
+            {
+                PingCommand.ShowPl(event);
+            }
         }
-        else if(messageSent.equalsIgnoreCase(pref + "help")) //komenda help
+        else if(messageSent.equalsIgnoreCase(pref + "help") || (messageSent.equalsIgnoreCase(pref + "pomoc") && language.equalsIgnoreCase("Polish"))) //komenda help
         {
-            HelpCommand.Show(event);
+            if(language.equalsIgnoreCase("English"))
+            {
+                HelpCommand.ShowEng(event);
+            }
+            else
+            {
+                HelpCommand.ShowPl(event);
+            }
         }
-
-        if(messageSent.equalsIgnoreCase(pref + "helpo"))
+        else if(messageSent.equalsIgnoreCase(pref + "helpo"))
         {
 
             if(checkPermissions(event,PermsChecker.getPerms(event),authorId) == true)
             {
-                HelpCommand.ShowOHelp(event);
+                if(language.equalsIgnoreCase("English"))
+                {
+                    HelpCommand.ShowOHelpEng(event);
+                }
+                else
+                {
+                    HelpCommand.ShowOHelpPl(event);
+                }
             }
             else
             {
-                event.getChannel().sendMessage("**Aj, aj, chyba nie jesteś z administracji ;)**").queue();
+                if(language.equalsIgnoreCase("Polish"))
+                {
+                    event.getChannel().sendMessage("**Aj, aj, chyba nie jesteś z administracji ;)**").queue();
+                }
+                else
+                {
+                    event.getChannel().sendMessage("**Permissions Denied!**").queue();
+                }
+
             }
         }
         else if(messageSent.equalsIgnoreCase(pref + "shutdown"))
@@ -101,16 +140,22 @@ public class Handler extends ListenerAdapter
                 event.getChannel().sendMessage("**Aj, aj, chyba nie jesteś z administracji ;)**").queue();
             }
         }
-
-        if(messageSent.equalsIgnoreCase(pref + "wersja"))  //komenda wersja
+        else if(messageSent.equalsIgnoreCase(pref + "wersja") || (messageSent.equalsIgnoreCase(pref + "version") && language.equalsIgnoreCase("English")))  //komenda wersja
         {
-            VersionCommand.Show(event);
+            if(language.equalsIgnoreCase("Polish"))
+            {
+                VersionCommand.ShowPl(event);
+            }
+            else
+            {
+                VersionCommand.ShowEng(event);
+            }
         }
-        else if(message[0].equalsIgnoreCase(pref + "say")) //Komenda say
+        else if(message[0].equalsIgnoreCase(pref + "echo") || (messageSent.equalsIgnoreCase(pref + "say") && language.equalsIgnoreCase("English"))) //Komenda say
         {
             SayCommand.Show(event, message);
         }
-        else if(message[0].equalsIgnoreCase(pref + "invite")) //Komenda tworzaca zaproszenie
+        else if(message[0].equalsIgnoreCase(pref + "zaproszenie") || (messageSent.equalsIgnoreCase(pref + "invite") && language.equalsIgnoreCase("English"))) //Komenda tworzaca zaproszenie
         {
             InviteCommand.Show(event, message);
         }
@@ -163,9 +208,7 @@ public class Handler extends ListenerAdapter
             }
 
         }
-
-
-        if (message[0].equalsIgnoreCase(pref + "status"))
+        else if (message[0].equalsIgnoreCase(pref + "status"))
         {
 
 
@@ -176,16 +219,32 @@ public class Handler extends ListenerAdapter
                 //System.out.println(status);
                 BotStatus.changedStatus = status;
                 BotStatus.Status(event);
-                event.getChannel().sendMessage("**Zmieniono status bota!**").queue();
+                if(language.equalsIgnoreCase("Polish"))
+                {
+                    event.getChannel().sendMessage("**Zmieniono status bota!**").queue();
+                }
+                else
+                {
+                    event.getChannel().sendMessage("**Bot status has been changed!**").queue();
+                }
             }
             else
             {
                 System.out.println(authorName + " chcial zmienic status bota bez odpowiednich permisji!");
-                event.getChannel().sendMessage("**Nie posiadasz odpowiednich uprawnień, żeby użyć tej komendy!**").queue();
+                if(language.equalsIgnoreCase("Polish"))
+                {
+                    event.getChannel().sendMessage("**Nie posiadasz odpowiednich uprawnień, żeby użyć tej komendy!**").queue();
+                }
+                else
+                {
+                    event.getChannel().sendMessage("**Permissions Denied!**").queue();
+                }
+
 
                 return;
             }
         }
+
 
 
 

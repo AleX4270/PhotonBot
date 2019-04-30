@@ -5,7 +5,6 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class CalculateCommand extends ListenerAdapter
 {
-    private static String pref = "?";
 
 
     public static void Show(GuildMessageReceivedEvent event, String msg[])
@@ -13,10 +12,18 @@ public class CalculateCommand extends ListenerAdapter
 
             if(msg.length > 4)
             {
-                event.getChannel().sendMessage("**Maksymalnie możesz wykonać działanie tylko na 2 liczbach!**").queue();
+                if(Handler.language.equalsIgnoreCase("Polish"))
+                {
+                    event.getChannel().sendMessage("**Maksymalnie możesz wykonać działanie tylko na 2 liczbach!**").queue();
+                }
+                else
+                {
+                    event.getChannel().sendMessage("**Max 2 numbers!**").queue();
+                }
+
                 return;
             }
-            else if(msg[1].equalsIgnoreCase("dodaj")) //dodawanie dwoch liczb
+            else if(msg[1].equalsIgnoreCase("dodaj") || (msg[1].equalsIgnoreCase("add") && Handler.language.equalsIgnoreCase("English"))) //dodawanie dwoch liczb
             {
                 double a,b,r;
                 String result;
@@ -25,11 +32,18 @@ public class CalculateCommand extends ListenerAdapter
                 r = (a + b);
 
                 result = Double.toString(r);
+                if(Handler.language.equalsIgnoreCase("Polish"))
+                {
+                    event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+                }
+                else
+                {
+                    event.getChannel().sendMessage("**The Result:** " + result).queue();
+                }
 
-                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
 
             }
-            else if(msg[1].equalsIgnoreCase("odejmij"))
+            else if(msg[1].equalsIgnoreCase("odejmij") || (msg[1].equalsIgnoreCase("subtract") && Handler.language.equalsIgnoreCase("English")))
             {
                 double a,b,r;
                 String result;
@@ -39,9 +53,16 @@ public class CalculateCommand extends ListenerAdapter
 
                 result = Double.toString(r);
 
-                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+                if(Handler.language.equalsIgnoreCase("Polish"))
+                {
+                    event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+                }
+                else
+                {
+                    event.getChannel().sendMessage("**The Result:** " + result).queue();
+                }
             }
-            else if(msg[1].equalsIgnoreCase("pomnóż"))
+            else if(msg[1].equalsIgnoreCase("pomnóż") || (msg[1].equalsIgnoreCase("multiply") && Handler.language.equalsIgnoreCase("English")))
             {
                 double a,b,r;
                 String result;
@@ -51,9 +72,16 @@ public class CalculateCommand extends ListenerAdapter
 
                 result = Double.toString(r);
 
-                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+                if(Handler.language.equalsIgnoreCase("Polish"))
+                {
+                    event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+                }
+                else
+                {
+                    event.getChannel().sendMessage("**The Result:** " + result).queue();
+                }
             }
-            else if(msg[1].equalsIgnoreCase("podziel"))
+            else if(msg[1].equalsIgnoreCase("podziel") || (msg[1].equalsIgnoreCase("divide") && Handler.language.equalsIgnoreCase("English")))
             {
 
                 double a,b,r;
@@ -68,7 +96,14 @@ public class CalculateCommand extends ListenerAdapter
 
                 result = Double.toString(r);
 
-                event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+                if(Handler.language.equalsIgnoreCase("Polish"))
+                {
+                    event.getChannel().sendMessage("**Wynik tego dzialania to:** " + result).queue();
+                }
+                else
+                {
+                    event.getChannel().sendMessage("**The Result:** " + result).queue();
+                }
             }
         }
 

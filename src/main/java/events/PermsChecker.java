@@ -17,6 +17,7 @@ public class PermsChecker extends ListenerAdapter {
     {
 
 
+
         File plik = new File("ownerid.txt");
         try {
             Scanner odczyt = new Scanner(plik);

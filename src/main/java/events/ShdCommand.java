@@ -7,7 +7,15 @@ public class ShdCommand extends ListenerAdapter
 {
     public static void Shutdown(GuildMessageReceivedEvent e)
     {
-        e.getChannel().sendMessage("Wylaczanie bota...");
+        if(Handler.language.equalsIgnoreCase("Polish"))
+        {
+            e.getChannel().sendMessage("Wylaczanie bota...");
+        }
+        else
+        {
+            e.getChannel().sendMessage("Shutting down the bot...");
+        }
+
         System.exit(0);
     }
 }

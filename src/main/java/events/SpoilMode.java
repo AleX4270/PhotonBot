@@ -12,12 +12,12 @@ public class SpoilMode extends ListenerAdapter
         if(spoilMode == false)
         {
             spoilMode = true;
-            e.getChannel().sendMessage("Anti Spoiler Mode Activated!").queue();
+            //e.getChannel().sendMessage("Anti Spoiler Mode Activated!").queue();
         }
         else if(spoilMode == true)
         {
             spoilMode = false;
-            e.getChannel().sendMessage("Anti Spoiler Mode Deactivated!").queue();
+            //e.getChannel().sendMessage("Anti Spoiler Mode Deactivated!").queue();
         }
     }
 }

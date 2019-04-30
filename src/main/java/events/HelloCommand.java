@@ -9,8 +9,13 @@ public class HelloCommand extends ListenerAdapter
     private static String pref = "?";
 
 
-    public static void Show(GuildMessageReceivedEvent event)
+    public static void ShowPl(GuildMessageReceivedEvent event)
     {
         event.getChannel().sendMessage("**Witaj, " + event.getAuthor().getName() + "!**").queue();
+    }
+
+    public static void ShowEng(GuildMessageReceivedEvent event)
+    {
+        event.getChannel().sendMessage("**Hello, " + event.getAuthor().getName() + "!**").queue();
     }
 }
