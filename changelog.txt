@@ -1,0 +1,5 @@
+- Added language selector.
+- Deleted calc command.
+- Small bugfixes.
+
+ver. 0.5.0

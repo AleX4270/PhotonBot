@@ -22,7 +22,7 @@ public class HelpCommand extends ListenerAdapter
             help.addField("?witaj" + ":raised_hands: " , "Sprawia, że bot się z tobą przywita!", false);
             help.addField("?ping" + ":ping_pong:" , "Pokazuje ping bota.", false);
             help.addField("?wersja :wrench:","Pokazuje informacje techniczne na temat bota", false);
-            help.addField("?kalkulator :heavy_plus_sign:", "dodaj/odejmij/pomnóż/podziel, maksymalnie 2 liczby!", false);
+            //help.addField("?kalkulator :heavy_plus_sign:", "dodaj/odejmij/pomnóż/podziel, maksymalnie 2 liczby!", false);
             help.addField("?helpo", "Wyświetla komendy dostępne tylko dla administracji bota,", false);
             help.addField("?echo :ab:", "Sprawia, że bot napisze co zechcesz :)",false);
             help.addField("?zaproszenie :space_invader:", "Tworzy link z zaproszeniem na serwer.", false);
@@ -39,7 +39,7 @@ public class HelpCommand extends ListenerAdapter
         help.addField("?hello" + ":raised_hands: " , "It makes the bot will say hello to you!", false);
         help.addField("?ping" + ":ping_pong:" , "It displays the ping.", false);
         help.addField("?version :wrench:","It shows you a piece of tech-info about the bot.", false);
-        help.addField("?calc :heavy_plus_sign:", "You can calculate something simple!", false);
+        //help.addField("?calc :heavy_plus_sign:", "You can calculate something simple!", false);
         help.addField("?helpo", "It displays commands available only for the administration of the bot.", false);
         help.addField("?say  :ab:", "It makes the bot will say something that you want :)",false);
         help.addField("?invite :space_invader:", "It creates an invite for a discord server.", false);

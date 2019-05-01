@@ -8,8 +8,8 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class BotStatus extends ListenerAdapter
 {
-    private static String defaultStatus = "Wpisz ?help";
-    public static String changedStatus = "Wpisz ?help";
+    private static String defaultStatus = "?help";
+    public static String changedStatus = "?help";
 
 
     public static void Status(GuildMessageReceivedEvent evnt)

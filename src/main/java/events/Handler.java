@@ -65,7 +65,7 @@ public class Handler extends ListenerAdapter
                 HelloCommand.ShowPl(event);
             }
         }
-        else if(message[0].equalsIgnoreCase(pref + "kalkulator") || (messageSent.equalsIgnoreCase(pref + "calc") && language.equalsIgnoreCase("English"))) //glowna czesc komendy kalkulator
+        /*else if((message[0].equalsIgnoreCase(pref + "kalkulator") && language.equalsIgnoreCase("Polish")) || (messageSent.equalsIgnoreCase(pref + "calc") && language.equalsIgnoreCase("English"))) //glowna czesc komendy kalkulator
         {
             try
             {
@@ -75,11 +75,15 @@ public class Handler extends ListenerAdapter
             {
                 if(language.equalsIgnoreCase("Polish"))
                 {
-
+                    event.getChannel().sendMessage("**Wystąpił błąd!**").queue(); //jezeli nie powiedzie się dodawanie
                 }
-                event.getChannel().sendMessage("**Wystąpił błąd!**").queue(); //jezeli nie powiedzie się dodawanie
+                else
+                {
+                    event.getChannel().sendMessage("**An error occured!**").queue(); //jezeli nie powiedzie się dodawanie
+                }
+
             }
-        }
+        }*/
         else if(messageSent.equalsIgnoreCase(pref + "ping")) //komenda ping
         {
             if(language.equalsIgnoreCase("English"))
@@ -91,7 +95,7 @@ public class Handler extends ListenerAdapter
                 PingCommand.ShowPl(event);
             }
         }
-        else if(messageSent.equalsIgnoreCase(pref + "help") || (messageSent.equalsIgnoreCase(pref + "pomoc") && language.equalsIgnoreCase("Polish"))) //komenda help
+        else if((messageSent.equalsIgnoreCase(pref + "pomoc") && language.equalsIgnoreCase("Polish")) || (messageSent.equalsIgnoreCase(pref + "help") && language.equalsIgnoreCase("English")))
         {
             if(language.equalsIgnoreCase("English"))
             {
@@ -129,7 +133,7 @@ public class Handler extends ListenerAdapter
 
             }
         }
-        else if(messageSent.equalsIgnoreCase(pref + "shutdown"))
+        else if((messageSent.equalsIgnoreCase(pref + "shutdown") && language.equalsIgnoreCase("English")) || (messageSent.equalsIgnoreCase(pref + "wylacz") && language.equalsIgnoreCase("Polish")))
         {
             if(checkPermissions(event, PermsChecker.getPerms(event), authorId) == true)
             {
@@ -140,7 +144,7 @@ public class Handler extends ListenerAdapter
                 event.getChannel().sendMessage("**Aj, aj, chyba nie jesteś z administracji ;)**").queue();
             }
         }
-        else if(messageSent.equalsIgnoreCase(pref + "wersja") || (messageSent.equalsIgnoreCase(pref + "version") && language.equalsIgnoreCase("English")))  //komenda wersja
+        else if((messageSent.equalsIgnoreCase(pref + "wersja") && language.equalsIgnoreCase("Polish")) || (messageSent.equalsIgnoreCase(pref + "version") && language.equalsIgnoreCase("English")))  //komenda wersja
         {
             if(language.equalsIgnoreCase("Polish"))
             {
@@ -151,11 +155,11 @@ public class Handler extends ListenerAdapter
                 VersionCommand.ShowEng(event);
             }
         }
-        else if(message[0].equalsIgnoreCase(pref + "echo") || (messageSent.equalsIgnoreCase(pref + "say") && language.equalsIgnoreCase("English"))) //Komenda say
+        else if((message[0].equalsIgnoreCase(pref + "echo") && language.equalsIgnoreCase("Polish")) || (message[0].equalsIgnoreCase(pref + "say") && language.equalsIgnoreCase("English"))) //Komenda say
         {
             SayCommand.Show(event, message);
         }
-        else if(message[0].equalsIgnoreCase(pref + "zaproszenie") || (messageSent.equalsIgnoreCase(pref + "invite") && language.equalsIgnoreCase("English"))) //Komenda tworzaca zaproszenie
+        else if((message[0].equalsIgnoreCase(pref + "zaproszenie") && language.equalsIgnoreCase("Polish")) || (message[0].equalsIgnoreCase(pref + "invite") && language.equalsIgnoreCase("English"))) //Komenda tworzaca zaproszenie
         {
             InviteCommand.Show(event, message);
         }
